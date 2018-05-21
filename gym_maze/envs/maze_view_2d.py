@@ -34,6 +34,10 @@ class MazeView2D:
         self.screen = pygame.display.set_mode(screen_size)
         self.__screen_size = tuple(map(sum, zip(screen_size, (-1, -1))))
 
+        self.reset()
+
+    def reset(self):
+
         # Set the starting point
         self.__entrance = np.zeros(2, dtype=int)
 
@@ -53,9 +57,6 @@ class MazeView2D:
 
         # show the maze
         self.__draw_maze()
-
-        # show the portals
-        self.__draw_portals()
 
         # show the robot
         self.__draw_robot()
@@ -189,6 +190,7 @@ class MazeView2D:
         y = int(self.__robot[1] * self.CELL_H + self.CELL_H * 0.5 + 0.5)
         r = int(min(self.CELL_W, self.CELL_H) / 5 + 0.5)
 
+        self.__colour_cell((self.__robot[0], self.__robot[1]), colour=(255, 111, 28), transparency=255)
         pygame.draw.circle(self.maze_layer, colour + (transparency,), (x, y), r)
 
     def __draw_entrance(self, colour=(0, 0, 150), transparency=235):
@@ -214,11 +216,11 @@ class MazeView2D:
         if not (isinstance(cell, (list, tuple, np.ndarray)) and len(cell) == 2):
             raise TypeError("cell must a be a tuple, list, or numpy array of size 2")
 
-        x = int(cell[0] * self.CELL_W + 0.5 + 1)
-        y = int(cell[1] * self.CELL_H + 0.5 + 1)
+        x = int(cell[0] * self.CELL_W + 0.5 + 1 + 5)
+        y = int(cell[1] * self.CELL_H + 0.5 + 1 + 5)
         w = int(self.CELL_W + 0.5 - 1)
         h = int(self.CELL_H + 0.5 - 1)
-        pygame.draw.rect(self.maze_layer, colour + (transparency,), (x, y, w, h))
+        pygame.draw.rect(self.maze_layer, colour + (transparency,), (x, y, w/3*2, h/3*2))
 
     @property
     def maze(self):
