@@ -22,12 +22,9 @@ class MazeEnv(gym.Env):
                                         maze_file_path=maze_file,
                                         screen_size=(640, 640))
         elif maze_size:
-            if mode == "plus":
-                has_loops = True
-                num_portals = int(round(min(maze_size) / 3))
-            else:
-                has_loops = False
-                num_portals = 0
+
+            has_loops = False
+            num_portals = 0
 
             self.maze_view = MazeView2D(maze_name="OpenAI Gym - Maze (%d x %d)" % maze_size,
                                         maze_size=maze_size, screen_size=(640, 640),
