@@ -66,27 +66,3 @@ register(
     max_episode_steps=1000000,
     nondeterministic=True,
 )
-
-register(
-    id='maze-random-10x10-plus-v0',
-    entry_point='gym_maze.envs:MazeEnv',
-    kwargs={'maze_size': (10, 10), 'mode': 'plus'},
-    max_episode_steps=1000000,
-    nondeterministic=True,
-)
-
-register(
-    id='maze-random-20x20-plus-v0',
-    entry_point='gym_maze.envs:MazeEnv',
-    kwargs={'maze_size': (20, 20), 'mode': 'plus'},
-    max_episode_steps=1000000,
-    nondeterministic=True,
-)
-
-register(
-    id='maze-random-30x30-plus-v0',
-    entry_point='gym_maze.envs:MazeEnv',
-    kwargs={'maze_size': (30, 30), 'mode': 'plus'},
-    max_episode_steps=1000000,
-    nondeterministic=True,
-)
